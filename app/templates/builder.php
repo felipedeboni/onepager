@@ -14,13 +14,13 @@
     }
 
     #onepager-builder {
-      width: 23%;
+      width: 300px;
       float: left;
     }
 
     #onepager-preview {
-      width: 77%;
-      margin-left: 23%;
+      width: calc(100% - 300px);
+      margin-left: 300px;
     }
 
     #onepager-preview iframe {

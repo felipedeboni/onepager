@@ -42,7 +42,12 @@
     $postArea.before($onepagerDisableBtn);
 
     function enableOnepagerHandler() {
-      $pageTemplate.val("onepage.php");
+      if ($pageTemplate.find('option[value="onepager/onepage.php"]').get(0)) {
+        $pageTemplate.val("onepager/onepage.php");
+      } else {
+        $pageTemplate.val("onepage.php");
+      }
+
       $pageTemplate.trigger('change');
 
       $publish.click();
@@ -107,7 +112,7 @@
    */
   function isOnepageTemplate(template) {
     //if template is null return false
-    return template && ("onepage.php" === template || template.indexOf("onepager-") === 0);
+    return template && ("onepage.php" === template || template.indexOf("onepager-") === 0 || template.indexOf("onepager/") === 0);
   }
 
   /**
