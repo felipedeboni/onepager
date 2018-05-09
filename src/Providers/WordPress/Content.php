@@ -64,7 +64,8 @@ class Content implements ContentInterface {
     //template name is onepage.php or onepager-*.php
     return (
              $template == "onepage.php" ||
-             substr( $template, 0, 9 ) == "onepager-"
+             substr( $template, 0, 9 ) == "onepager-" ||
+             substr( $template, 0, 9 ) == "onepager/"
           ) ? true : false;
   }
 
