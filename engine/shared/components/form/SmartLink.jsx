@@ -52,7 +52,7 @@ let SmartLink = React.createClass({
         <label className="control-label">{label}</label>
 
         <div className="form-group" style={{ marginBottom: 0 }}>
-          <div className="input-group" style={{ zIndex: 3, width: '100%' }}>
+          <div className="input-group" style={{ width: '100%' }}>
             <span className="input-group-addon" style={{ width: 58 }}>Type</span>
             <Select
               ref="linkType"

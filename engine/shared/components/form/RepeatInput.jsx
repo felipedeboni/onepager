@@ -13,7 +13,8 @@ function confirmDelete(proceed) {
     showCancelButton  : true,
     confirmButtonText : "Yes, delete it",
     closeOnConfirm    : true,
-    confirmButtonColor: '#d32f2f'
+    confirmButtonColor: '#d32f2f',
+    animation         : 'fade'
   }, proceed);
 }
 
