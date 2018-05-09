@@ -19,7 +19,10 @@ let WpSelect = React.createClass({
         options = ODataStore.menus;
         break;
       case "page":
-        options = ODataStore.pages;
+        options = ODataStore.pages_hierarchy;
+        break;
+      case "post":
+        options = ODataStore.posts;
         break;
       case "category":
         options = ODataStore.categories;

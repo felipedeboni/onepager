@@ -88,4 +88,29 @@ abstract class Onepager {
     return static::$basePreset;
   }
 
+  public static function resolveSmartLink($smartlink) {
+    if ( !is_array($smartlink) ) {
+      return "";
+    }
+
+    $linkType = $smartlink['linkType'];
+
+    $link = array(
+      'text' => $smartlink['text'],
+      'target' => $smartlink['target'] ? $smartlink['target'] : false
+    );
+
+    if ( $linkType === 'external' ) {
+      $link['url'] = $smartlink['url'];
+    } else if ( $linkType === 'page' ) {
+      $pageId = $smartlink['pageId'];
+      $link['url'] = $pageId ? get_permalink( $pageId ) : '';
+    } else if ( $linkType === 'post' ) {
+      $postId = $smartlink['postId'];
+      $link['url'] = $postId ? get_permalink( $postId ) : '';
+    }
+
+    return $link;
+  }
+
 }

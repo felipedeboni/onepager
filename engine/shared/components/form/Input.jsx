@@ -10,6 +10,7 @@ const WpMediaFrame = require('./media/WpMediaFrame.jsx');
 const WpSelect = require('./WpSelect.jsx');
 const Select = require('./Select.jsx');
 const Link = require('./Link.jsx');
+const SmartLink = require('./SmartLink.jsx');
 const TinyMCE = require('./editor/TinyMCE.jsx');
 const PureMixin = require('../../mixins/PureMixin.js');
 const Activity = require('../../lib/Activity.js');
@@ -101,6 +102,22 @@ let InputControl = React.createClass({
                 text={control.value.text || ""}
                 url={control.value.url || ""}
                 target={control.value.target || false} />;
+        break;
+
+      case "smartlink":
+        controlHtml =
+          <SmartLink
+            ref="input"
+            onChange={this.onChange}
+            label={control.label}
+            linkType={control.value.linkType || ""}
+            text={control.value.text || ""}
+            pageId={control.value.pageId || ""}
+            postId={control.value.postId || ""}
+            url={control.value.url || ""}
+            target={control.value.target || false}
+          />
+
         break;
 
       case "menu":

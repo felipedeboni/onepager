@@ -15,11 +15,58 @@ class Content implements ContentInterface {
     return [ "Select" ] + obj_to_array( get_pages(), 'ID', 'post_title' );
   }
 
+  public function getPagesWithHierarchy() {
+    $pages = get_pages(array(
+      'hierarchical' => 1,
+      'sort_order' => 'asc',
+      'sort_column' => 'ID',
+    ));
+
+    $output = array(
+      array(
+        'id' => '',
+        'name' => 'Select'
+      )
+    );
+    foreach( $pages as $page ) {
+      $depth = $this->getPageDepth($pages, $page);
+      $pad = str_repeat('-', $depth);
+      array_push($output, array(
+        'id' => $page->ID,
+        'name' => ($depth > 0 ? $pad . ' ' : '') . $page->post_title
+      ));
+    }
+
+    return $output;
+  }
+
+  private function getPageDepth($pages, $page) {
+    $depth = 0;
+    $parentId = $page->post_parent;
+
+    while( $parentId > 0 ) {
+      foreach( $pages as $p ) {
+        if ( $p->ID == $parentId ) {
+          $depth++;
+          $parentId = $p->ID;
+          break;
+        }
+      }
+
+      $parentId = 0;
+    }
+
+    return $depth;
+  }
+
   /**
    *
    */
   public function getPosts() {
-    // TODO: Implement getPosts() method.
+    return [ "Select" ] + obj_to_array(get_posts(array(
+      'sort_order' => 'asc',
+      'sort_column' => 'post_title'
+    )), 'ID', 'post_title' );
   }
 
   /**

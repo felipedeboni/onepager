@@ -36,15 +36,17 @@ class BuildModeScripts {
   }
 
   function localizeScriptData( $pageId ) {
-    $onepager = onepager();
+    $onepager         = onepager();
 
-    $footer     = get_editor_section_list_footer();
-    $ajaxUrl    = $onepager->api()->getAjaxUrl();
-    $menus      = $onepager->content()->getMenus();
-    $categories = $onepager->content()->getCategories();
-    $pages      = $onepager->content()->getPages();
-    $blocks     = array_values( (array) $onepager->blockManager()->all() );
-    $groupOrder = $onepager->blockManager()->getGroupOrder();
+    $footer           = get_editor_section_list_footer();
+    $ajaxUrl          = $onepager->api()->getAjaxUrl();
+    $menus            = $onepager->content()->getMenus();
+    $categories       = $onepager->content()->getCategories();
+    $pages            = $onepager->content()->getPages();
+    $pages_hierarchy  = $onepager->content()->getPagesWithHierarchy();
+    $posts            = $onepager->content()->getPosts();
+    $blocks           = array_values( (array) $onepager->blockManager()->all() );
+    $groupOrder       = $onepager->blockManager()->getGroupOrder();
 
     $sections = array_map( function ( $section ) {
       $section            = onepager()->render()->sectionBlockDataMerge( $section );
@@ -74,6 +76,8 @@ class BuildModeScripts {
       'sections',
       'menus',
       'pages',
+      'pages_hierarchy',
+      'posts',
       'categories',
       'groupOrder',
       'footer',

@@ -10,6 +10,8 @@ interface ContentInterface {
 
   public function getPages();
 
+  public function getPagesWithHierarchy();
+
   public function getPosts();
 
   public function getMenus();

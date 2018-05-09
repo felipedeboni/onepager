@@ -38,8 +38,12 @@ let SelectControl = React.createClass({
              onChange={this.props.onChange}
              className={this.props.className}>
         {
-          _.map(options, (label, val)=> {
-            return <option key={val} value={val}>{this.isEmpty(label) ? val : label}</option>;
+          _.map(options, (option, val)=> {
+            if ( option.id ) {
+              return <option key={option.id} value={option.id}>{this.isEmpty(option.name) ? option.id : option.name}</option>;
+            } else {
+              return <option key={val} value={val}>{this.isEmpty(option) ? val : option}</option>;
+            }
           })
         }
       </Input>
