@@ -121,9 +121,13 @@ let Repeater = React.createClass({
     console.log('rendering repeater');
     let rGroups = this.props.options.fields;
     let id      = this.props.id;
+    let label   = this.props.options && this.props.options.label;
 
     return (
       <div ref="container" className="repeatable-control">
+        {label && (
+          <label className="control-label">{label}</label>
+        )}
 
         <Button bsStyle="primary" className="btn--add-repeater btn-block"
                 onClick={this.addRepeatGroup.bind(this, false, 0)}>
