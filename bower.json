@@ -9,31 +9,31 @@
     "fontawesome": "~4.7.0",
     "fontawesome-selector": "https://github.com/themexpert/fontawesome-selector.git",
     "fullpage.js": "~2.6.7",
-    "jquery.nicescroll": "~3.6.0",
     "lesshat": "~3.0.2",
     "magnific-popup": "~1.0.0",
     "mjolnic-bootstrap-colorpicker": "~2.1.2",
     "sweetalert": "~1.0.1",
     "toastr": "~2.1.1",
-    "wow": "~1.1.2"
+    "wow": "~1.1.2",
+    "overlayScrollbars": "^1.4.4"
   },
   "overrides": {
-    "jquery.nicescroll": {
-        "main": [
-            "./jquery.nicescroll.min.js",
-            "./zoomico.png"
-        ]
+    "overlayScrollbars": {
+      "main": [
+        "./css/OverlayScrollbars.css",
+        "./js/jquery.overlayScrollbars.min.js"
+      ]
     },
     "fontawesome": {
-        "main": [
-          "css/font-awesome.css",
-          "css/font-awesome.min.css",
-          "fonts/fontawesome-webfont.eot",
-          "fonts/fontawesome-webfont.svg",
-          "fonts/fontawesome-webfont.ttf",
-          "fonts/fontawesome-webfont.woff",
-          "fonts/fontawesome-webfont.woff2"
-        ]
+      "main": [
+        "css/font-awesome.css",
+        "css/font-awesome.min.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.svg",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.woff2"
+      ]
     }
   },
   "devDependencies": {},

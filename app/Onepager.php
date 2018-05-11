@@ -113,4 +113,20 @@ abstract class Onepager {
     return $link;
   }
 
+  public static function getBackgroundImage($image) {
+    if ( empty($image) ) {
+      return 'background-image: none;';
+    }
+
+    return 'background-image: url(' . $image . ');';
+  }
+
+  public static function getBackgroundColor($color) {
+    if ( empty($color) ) {
+      return 'background-color: transparent;';
+    }
+
+    return 'background-color: ' . $color . ';';
+  }
+
 }

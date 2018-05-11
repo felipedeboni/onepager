@@ -6,6 +6,7 @@
 
   <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
   <link rel="stylesheet" href="../assets/css/font-awesome.css"/>
+  <link rel="stylesheet" href="../assets/css/OverlayScrollbars.css"/>
 </head>
 <body>
   <div id="generator-mount"></div>
@@ -13,7 +14,7 @@
   <script src="../assets/js/jquery.js"></script>
   <script src="../assets/js/bootstrap.js"></script>
   <script src="../assets/js/wow.js"></script>
-  <script src="../assets/js/jquery.nicescroll.js"></script>
+  <script src="../assets/js/jquery.overlayScrollbars.min.js"></script>
   <script src="../assets/lithium.js"></script>
 
   <script src="../assets/js/icon-selector.min.js"></script>

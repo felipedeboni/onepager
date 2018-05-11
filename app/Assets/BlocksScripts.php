@@ -51,11 +51,15 @@ class BlocksScripts {
   protected function enqueueBlockScripts( $block ) {
     $enqueueCb = $block['enqueue'];
 
+    $blockUrl = $block['url'];
+    $blockCssFile = $block['dir'].'block.css';
+    if(FileSystem::exists($blockCssFile)){
+      onepager()->asset()->style($block['slug']."-block", $blockUrl."/block.css");
+    }
+
     if ( ! $enqueueCb ) {
       return;
     }
-
-    $blockUrl = $block['url'];
 
     $enqueueCb( $blockUrl );
     $this->enqueueBlockCss( $block, $blockUrl );

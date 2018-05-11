@@ -16,13 +16,14 @@ trait FormEngineScripts {
     // tx namespaced assets to avoid multiple assets loading from other ThemeXpert product
     $asset->style( 'tx-bootstrap', op_asset( 'assets/css/bootstrap.css' ) );
     $asset->style( 'tx-fontawesome', op_asset( 'assets/css/font-awesome.css' ) );
+    $asset->style( 'tx-overlayScrollbars', op_asset( 'assets/css/OverlayScrollbars.css' ) );
 
     $asset->script( 'tx-bootstrap', op_asset( 'assets/js/bootstrap.js' ), [ 'jquery' ], ONEPAGER_VERSION, false );
     $asset->script( 'tx-bootstrap-switch', op_asset( 'assets/js/bootstrap-switch.js' ), [ 'jquery' ], ONEPAGER_VERSION, false );
     $asset->script( 'tx-bootstrap-select', op_asset( 'assets/js/bootstrap-select.js' ), [ 'jquery' ], ONEPAGER_VERSION, false );
     $asset->script( 'tx-iconselector', op_asset( 'assets/js/icon-selector-bootstrap.js' ), [ 'jquery' ], ONEPAGER_VERSION, false );
     $asset->script( 'tx-colorpicker', op_asset( 'assets/js/bootstrap-colorpicker.js' ), [ 'jquery' ], ONEPAGER_VERSION, false );
-    $asset->script( 'tx-nicescroll', op_asset( 'assets/js/jquery.nicescroll.min.js' ), [ 'jquery' ], ONEPAGER_VERSION, false );
+    $asset->script( 'tx-overlayScrollbars', op_asset( 'assets/js/jquery.overlayScrollbars.min.js' ), [ 'jquery' ], ONEPAGER_VERSION, false );
     $asset->script( 'tx-toastr', op_asset( 'assets/js/toastr.js' ), [ 'jquery' ], ONEPAGER_VERSION, false );
 
     $asset->style( 'tx-colorpicker', op_asset( "assets/css/bootstrap-colorpicker.css" ) );

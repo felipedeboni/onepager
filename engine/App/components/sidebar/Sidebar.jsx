@@ -30,7 +30,11 @@ let Sidebar = React.createClass({
 
   componentDidMount(){
     this._unsavedAlert();
-    this._initNiceScroll();
+    this._initOverlayScrollbars();
+  },
+
+  componentWillUnmount() {
+    this._destroyOverlayScrollbars();
   },
 
   getInitialState(){
@@ -91,12 +95,21 @@ let Sidebar = React.createClass({
     });
   },
 
-  _initNiceScroll(){
-    let tabContents = React.findDOMNode(this.refs.tabContents);
+  _initOverlayScrollbars(){
+    this.$scroller = $(React.findDOMNode(this.refs.scroller))
 
-    $(function () {
-      $(tabContents).niceScroll({cursorcolor: '#2ab0ad', cursorborder: '0'});
+    this.$scroller.overlayScrollbars({
+      scrollbars: {
+        autoHide: 'leave'
+      },
+      overflowBehavior: {
+        x: 'hidden'
+      }
     });
+  },
+
+  _destroyOverlayScrollbars() {
+    this.$scroller && this.$scroller.overlayScrollbars().destroy();
   },
 
   handleTabClick(id){
@@ -173,43 +186,44 @@ let Sidebar = React.createClass({
       <div className="txop-sidebar op-ui clearfix">
         {this._renderTabs()}
 
-        <div className='tab-content' ref='tabContents'>
-          <div className={overlayClasses}/>
+        <div ref="scroller" style={{ height: '100%' }}>
+          <div className='tab-content' ref='tabContents'>
+            <div className={overlayClasses}/>
 
-          <TabPane id='op-sections' active={activeTab}>
-            <SectionList
-              openBlocks={handleTabClick.bind(this, 'op-blocks')}
-              activeSectionIndex={activeSectionIndex}
-              blocks={blocks}
-              sections={sections}/>
-          </TabPane>
+            <TabPane id='op-sections' active={activeTab}>
+              <SectionList
+                openBlocks={handleTabClick.bind(this, 'op-blocks')}
+                activeSectionIndex={activeSectionIndex}
+                blocks={blocks}
+                sections={sections}/>
+            </TabPane>
 
-          <TabPane id="op-blocks" active={activeTab}>
-            <BlockCollection blocks={blocks}/>
-          </TabPane>
+            <TabPane id="op-blocks" active={activeTab}>
+              <BlockCollection blocks={blocks}/>
+            </TabPane>
 
-          <TabPane id='op-menu' active={activeTab}>
-            <Menu sections={sections}/>
-          </TabPane>
+            <TabPane id='op-menu' active={activeTab}>
+              <Menu sections={sections}/>
+            </TabPane>
 
-          <TabPane id='op-contents' active={activeTab}>
-            {sectionEditable ?
-              <SectionControls
-                update={update}
-                title={sections[activeSectionIndex].title}
-                sectionSettings={sectionSettings}
-                sectionIndex={activeSectionIndex}/> :
+            <TabPane id='op-contents' active={activeTab}>
+              {sectionEditable ?
+                <SectionControls
+                  update={update}
+                  title={sections[activeSectionIndex].title}
+                  sectionSettings={sectionSettings}
+                  sectionIndex={activeSectionIndex}/> :
 
-              <h2>please select a section</h2>
-            }
-          </TabPane>
+                <h2>please select a section</h2>
+              }
+            </TabPane>
 
-          <TabPane id='op-settings' active={activeTab}>
-            <Settings whenSettingsDirty={this.whenSettingsDirty}/>
-          </TabPane>
+            <TabPane id='op-settings' active={activeTab}>
+              <Settings whenSettingsDirty={this.whenSettingsDirty}/>
+            </TabPane>
 
-          {activeTab === "op-sections" ? <Footer /> : null }
-
+            {activeTab === "op-sections" ? <Footer /> : null }
+          </div>
         </div>
 
         <div className="op-sidebar-control" onClick={this.collapseSidebar}>
