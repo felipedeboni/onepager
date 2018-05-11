@@ -7,8 +7,15 @@ require("../../../../../assets/css/icon-selector.bootstrap.min.css");
 let WpMediaFrame = React.createClass({
   mixins: [PureMixin],
 
+  getInitialState() {
+    return {
+      src: this.props.src,
+      alt: this.props.alt
+    }
+  },
+
   getValue(){
-    return React.findDOMNode(this.refs.input).value;
+    return this.state;
   },
 
   wpMedia(btn, cb){
@@ -47,7 +54,9 @@ let WpMediaFrame = React.createClass({
 
     this.wpMedia(buttonEl, imageSrc=> {
       $(inputEl).val(imageSrc);
-      this.props.onChange();
+      this.onChange({
+        src: imageSrc
+      });
     });
 
   },
@@ -61,16 +70,26 @@ let WpMediaFrame = React.createClass({
     this.props.onChange();
   },
 
+  onChange(props) {
+    this.setState(state => ({
+      ...state,
+      ...props
+    }));
+
+    this.props.onChange();
+  },
 
   render() {
+    let { hasAlt, alt, src } = this.props;
     let classes = this.props.className + " form-control image-input";
 
     return (
       <div className="form-group">
         {this.props.label ? <label>{this.props.label}</label> : null }
 
-        <div className="input-group">
-          <input {...this.props} type="text" className={classes} ref="input"/>
+        <div className="form-group" style={{ marginBottom: 0 }}>
+          <div className="input-group">
+            <input defaultValue={src} type="text" className={classes} ref="input"/>
             <span className="input-group-btn">
               <button className="btn btn-primary" ref="select" type="button">
                 <span className="fa fa-picture-o"></span> image
@@ -79,7 +98,23 @@ let WpMediaFrame = React.createClass({
                 <span className="fa fa-undo"></span>
               </button>
             </span>
+          </div>
         </div>
+
+        {hasAlt && (
+          <div className="form-group">
+            <div className="input-group" style={{ width: '100%' }}>
+              <span className="input-group-addon" style={{ width: 58 }}>Alt</span>
+              <input
+                defaultValue={alt}
+                className="form-control"
+                onChange={(e) => this.onChange({ alt: e.target.value.trim() })}
+                ref="text"
+                type="text"
+              />
+            </div>
+          </div>
+        )}
 
         <div className="media-preview"></div>
       </div>

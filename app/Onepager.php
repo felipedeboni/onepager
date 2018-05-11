@@ -114,11 +114,11 @@ abstract class Onepager {
   }
 
   public static function getBackgroundImage($image) {
-    if ( empty($image) ) {
+    if ( empty($image) || empty($image['src']) ) {
       return 'background-image: none;';
     }
 
-    return 'background-image: url(' . $image . ');';
+    return 'background-image: url(' . $image['src'] . ');';
   }
 
   public static function getBackgroundColor($color) {

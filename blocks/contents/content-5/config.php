@@ -61,7 +61,7 @@ return array(
     array(
       'name'    => 'bg_image',
       'label'   => 'Background',
-      'type'    => 'image',
+      'type'    => 'background_image',
       'value'   => 'http://s3.amazonaws.com/quantum-assets/bg/bg6.jpg'
     ),
     array(

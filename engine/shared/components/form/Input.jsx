@@ -56,13 +56,31 @@ let InputControl = React.createClass({
                         onChange={this.onChange}/>;
         break;
 
+      case "background_image":
+        controlHtml =
+          <WpMediaFrame
+            ref="input"
+            className={control.class}
+            type='background_image'
+            hasAlt={false}
+            src={control.value.src}
+            label={control.label}
+            onChange={this.onChange}
+          />;
+        break;
+
       case "image":
         controlHtml =
-          <WpMediaFrame ref="input"
-                        className={control.class}
-                        defaultValue={control.value}
-                        label={control.label}
-                        onChange={this.onChange}/>;
+          <WpMediaFrame
+            ref="input"
+            className={control.class}
+            type='image'
+            hasAlt={true}
+            src={control.value.src}
+            alt={control.value.alt}
+            label={control.label}
+            onChange={this.onChange}
+          />;
         break;
 
       case "media":
