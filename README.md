@@ -18,7 +18,7 @@ Download or clone the source and do follow [this guide](./docs/guides/build.md).
 
 ## Documentation
 
-The [Documentation](./docs/readme.md) is available on the docs folder.
+The [Documentation](./docs/README.md) is available on the docs folder.
 
 ## How to Contribute
 
