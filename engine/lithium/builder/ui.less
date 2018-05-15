@@ -363,6 +363,11 @@ h3.form-divider {
 //  Sidebar / Configure
 // ****************************************************
 .txop-sidebar {
+
+  .os-host {
+    height: calc(~'100% - 42px') !important;
+  }
+
   // Turn off underline
   a {
     text-decoration: none;
@@ -475,6 +480,21 @@ h3.form-divider {
       }
     }
   }
+
+  .footer .btn-preview {
+    background: none;
+    border: none;
+    color: @text-color;
+    font-size: 20px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &.active {
+      color: @brand-primary;
+    }
+  }
 }
 
 // ****************************************************
@@ -534,10 +554,41 @@ h3.form-divider {
 //  Sections
 // ****************************************************
 #onepager-preview {
+  background: #191e23;
   //width: (100 - @sidebar-width);
   //margin-left: @sidebar-width;
   position: relative;
   .transition(all 0.3s linear);
+}
+
+#onepager-preview-inner {
+  position: absolute;
+  left: 0;
+  right: auto;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+	width: 100%;
+  transition-property: all;
+  transition-duration: .2s;
+}
+
+.preview-tablet #onepager-preview-inner {
+  margin: auto 0 auto -384px;
+  width: 768px;
+  height: 1024px;
+  max-height: 100%;
+  max-width: 100%;
+  left: 50%;
+}
+
+.preview-mobile #onepager-preview-inner {
+  margin: auto 0 auto -187px;
+  width: 375px;
+  height: 667px;
+  max-height: 100%;
+  max-width: 100%;
+  left: 50%;
 }
 
 .txop-noblock {
@@ -749,7 +800,7 @@ body.op-sidebar-collapsed{
   width: 100%;height: 100%;
   color: #fff;
   #gradient > .directional(#7229A9, #D360E6, 135deg);
-  opacity: 0.94;
+  opacity: 1;
 
   .loader{
     background: url(../images/loader.gif) no-repeat 0 0;

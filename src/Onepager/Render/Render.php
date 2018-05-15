@@ -28,6 +28,16 @@ class Render {
     }
   }
 
+  public function sectionsHTML($sections) {
+    $output = '';
+
+    foreach ( $sections as $section ) {
+      $output .= $this->section( $section );
+    }
+
+    return $output;
+  }
+
   /**
    * FIXME: Currently we are not smartly handling non existent blocks exceptions
    *

@@ -39,7 +39,9 @@
   </div>
 </div>
 <div id="onepager-preview">
-  <iframe src="<?php echo onepager_get_preview_url( get_current_page_url() ) ?>" frameborder="0"></iframe>
+  <div id="onepager-preview-inner">
+    <iframe src="<?php echo onepager_get_preview_url( get_current_page_url() ) ?>" frameborder="0"></iframe>
+  </div>
 </div>
 
 <?php wp_footer(); ?>

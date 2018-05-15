@@ -67,7 +67,9 @@ let WpMediaFrame = React.createClass({
 
   handleReset(){
     React.findDOMNode(this.refs.input).value = "";
-    this.props.onChange();
+    this.onChange({
+      src: ''
+    });
   },
 
   onChange(props) {

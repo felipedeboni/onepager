@@ -54,6 +54,13 @@ require( ONEPAGER_PATH . '/app/bootstrap.php' );
 require( ONEPAGER_PATH . '/app/Api/routes.php' );
 require( ONEPAGER_PATH . '/app/OptionsPanel/settings.php' );
 require( ONEPAGER_PATH . '/app/Metabox/metabox.php' );
+require( ONEPAGER_PATH . '/app/WordPress/Revisions.php' );
+
+function add_meta_keys_to_revision( $keys ) {
+	$keys[] = 'onepager_sections';
+	return $keys;
+}
+add_filter( 'wp_post_revision_meta_keys', 'add_meta_keys_to_revision' );
 
 
 add_action('wp_head', 'print_onepager_meta');

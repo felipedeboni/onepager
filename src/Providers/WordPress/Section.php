@@ -44,5 +44,9 @@ class Section implements SectionInterface {
 
   public function save( $pageId, $sections ) {
     update_post_meta( $pageId, $this->ONEPAGER_SECTIONS, $sections );
+    wp_update_post(array(
+      'ID' => $pageId,
+      'post_content' => onepager()->render()->sectionsHTML($sections)
+    ));
   }
 }

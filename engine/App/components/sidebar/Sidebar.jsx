@@ -134,10 +134,8 @@ let Sidebar = React.createClass({
              icon2="arrow-left" parent={true}/>
         <Tab onClick={handleTabClick} id='op-contents' icon='sliders' title='Contents' active={activeTab}/>
         <Tab onClick={handleTabClick} id='op-blocks' icon='cube' title='Blocks' active={activeTab}/>
-        <Tab onClick={handleTabClick} id='op-menu' icon='link' title='Menu' active={activeTab}
-             visibleOn="op-sections"/>
-        <Tab onClick={handleTabClick} id='op-settings' icon='cog' title='Global Settings' active={activeTab}
-             visibleOn="op-sections"/>
+        {/* <Tab onClick={handleTabClick} id='op-menu' icon='link' title='Menu' active={activeTab} visibleOn="op-sections"/> */}
+        {/* <Tab onClick={handleTabClick} id='op-settings' icon='cog' title='Global Settings' active={activeTab} visibleOn="op-sections"/> */}
 
         <div className="btn-group">
           {
@@ -221,10 +219,10 @@ let Sidebar = React.createClass({
             <TabPane id='op-settings' active={activeTab}>
               <Settings whenSettingsDirty={this.whenSettingsDirty}/>
             </TabPane>
-
-            {activeTab === "op-sections" ? <Footer /> : null }
           </div>
         </div>
+
+        <Footer />
 
         <div className="op-sidebar-control" onClick={this.collapseSidebar}>
           <span className={classes}></span>
