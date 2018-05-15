@@ -16,4 +16,7 @@ if ( is_admin() && defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 
   $apiRouter->post( 'onepager_select_layout', 'App\Api\Controllers\PageApiController@selectLayout' );
   $apiRouter->post( 'onepager_add_page', 'App\Api\Controllers\PageApiController@addPage' );
+
+  $apiRouter->post( 'onepager_save_template', 'App\Api\Controllers\TemplatesApiController@saveTemplate' );
+  $apiRouter->post( 'onepager_remove_template', 'App\Api\Controllers\TemplatesApiController@removeTemplate' );
 }

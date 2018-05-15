@@ -7,18 +7,19 @@ class PresetManager {
   protected $templates = [];
   protected $paths = [];
   protected $ignoredGroups = array();
+  protected $ONEPAGER_TEMPLATES = 'onepager_templates';
 
   public function loadAllFromPath( $path, $url, $groups = array() ) {
     $this->paths[] = compact( "path", "url", "groups" );
   }
 
   public function add( $file, $url, $groups = array() ) {
-    $config = json_decode( file_get_contents( $file ), true );
+    $config = $url == 'db' ? $file : json_decode( file_get_contents( $file ), true );
     if ( ! is_array( $config ) ) {
       return;
     }
 
-    $filename = basename( $file );
+    $filename = !empty($config['id']) ? $config['id'] : basename( $file );
 
     if ( ! array_key_exists( 'screenshot', $config ) ) {
       $imageName            = str_replace( '.json', '.jpg', $filename );
@@ -54,11 +55,26 @@ class PresetManager {
         $this->add( $config_file, $path['url'], $path['groups'] );
       }
     }
+
+    $dbTemplates = $this->loadDatabaseTemplates();
+
+    if ( $dbTemplates ) {
+      foreach( $dbTemplates as $template ) {
+        $this->add($template, 'db', 'My Templates');
+      }
+    }
+  }
+
+  public function loadDatabaseTemplates() {
+    return $this->getTemplates();
   }
 
   public function all() {
     $this->loadAll();
     $ignoredGroups = $this->getIgnoredGroups();
+
+    // $tpl = $this->templates[0];
+    // $this->addTemplate('Custom Tpl', $tpl['sections']);
 
     return array_filter( $this->templates, function ( $template ) use ( $ignoredGroups ) {
       return ! count( array_intersect( $template['group'], $ignoredGroups ) );
@@ -77,5 +93,50 @@ class PresetManager {
    */
   public function setIgnoredGroups( $ignoredGroups ) {
     $this->ignoredGroups = array_unique(array_merge((array) $ignoredGroups, $this->ignoredGroups));
+  }
+
+  public function addTemplate($name, $sections) {
+    $data = $this->getTemplates();
+    $isNew = is_bool($data);
+    $data = $isNew ? array() : $data;
+
+    $template = array(
+      'id' => uniqid(),
+      'name' => $name,
+      'sections' => $sections
+    );
+
+    array_push($data, $template);
+
+    $success;
+    if ( $isNew ) {
+      $success = add_option($this->ONEPAGER_TEMPLATES, json_encode($data), false, false );
+    } else {
+      $success = update_option($this->ONEPAGER_TEMPLATES, json_encode($data), false, false );
+    }
+
+    return array(
+      'success' => $success,
+      'template' => $template
+    );
+  }
+
+  public function removeTemplate($id) {
+    $data = $this->getTemplates();
+    $newData = array_values(array_filter($data, function($template) use ($id) {
+      return $template['id'] != $id;
+    }));
+
+    return update_option($this->ONEPAGER_TEMPLATES, json_encode($newData), false, false );
+  }
+
+  private function getTemplates() {
+    $data = get_option( $this->ONEPAGER_TEMPLATES );
+
+    if ( is_bool($data) ) {
+      return false;
+    }
+
+    return array_values(json_decode($data, true));
   }
 }

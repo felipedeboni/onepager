@@ -10,6 +10,7 @@ const ODataStore = require('./../shared/onepager/ODataStore.js');
 const BaseStore = require('./flux/BaseStore.js');
 const AppActions = require('./flux/AppActions.js');
 const SyncService = require('./AppSyncService.js');
+const ApiService = require('./AppApiService.js');
 
 require('./../shared/onepager/lib/_mixins.js');
 
@@ -27,11 +28,18 @@ function sortBlocks(blocks){
   });
 }
 
+function sortTemplates(templates) {
+  return templates.sort(function (a, b) {
+    return +(a.name > b.name) || +(a.name === b.name) - 1;
+  });
+}
+
 function transformSections(sections){
   return SectionTransformer.unserializeSections(sections, _blocks);
 }
 
 let _blocks = sortBlocks(ODataStore.blocks);
+let _templates = sortTemplates(ODataStore.templates);
 let _sections = transformSections(ODataStore.sections);
 let _menuState = {id: null, index: null, title: null};
 let _savedSections = getSerializedSectionsAsJSON(_sections);
@@ -170,6 +178,30 @@ function reloadBlocks(){
   return reloadBlocksPromise;
 }
 
+function saveTemplate(name) {
+  let updated = ApiService.saveTemplate(name, _sections);
+
+  updated.then(tpl => {
+    let tpls = toolbelt.copy(_templates);
+    tpls.push(tpl);
+    tpls = sortTemplates(tpls);
+    AppStore.setTemplates(tpls);
+  });
+
+  return updated;
+};
+
+function removeTemplate(id) {
+  let updated = ApiService.removeTemplate(id);
+
+  updated.then(() => {
+    let tpls = _templates.filter(_ => _.id !== id);
+    AppStore.setTemplates(tpls);
+  });
+
+  return updated;
+};
+
 
 let dispatcherIndex = AppDispatcher.register(function (payload) {
   const actions = Constants.ActionTypes;
@@ -239,6 +271,15 @@ let dispatcherIndex = AppDispatcher.register(function (payload) {
       setPreviewFrameLoaded();
       emitChange();
       break;
+
+    case actions.ADD_TEMPLATE:
+      return saveTemplate(action.name, _sections);
+
+    case actions.REMOVE_TEMPLATE:
+      return removeTemplate(action.id);
+
+    case actions.LOAD_PRESET:
+      return AppStore.loadPresetById(action.id);
   }
 });
 
@@ -250,6 +291,7 @@ let AppStore = assign({}, BaseStore, {
     return {
       isDirty: this.isDirty(),
       blocks: _blocks,
+      templates: _templates,
       sections: _sections,
       menuState: _menuState,
       activeSection: _sections[_activeSectionIndex],
@@ -319,11 +361,28 @@ let AppStore = assign({}, BaseStore, {
 
   loadPreset(sections){
     sections = transformSections(sections);
+    _activeSectionIndex = null;
     this.setSections(sections);
+    reloadSections(sections).then(function () {
+      emitChange();
+    });
+  },
+
+  loadPresetById(id) {
+    let template = _templates.find(_ => _.id === id );
+
+    if ( template.sections ) {
+      this.loadPreset(toolbelt.copy(template.sections))
+    }
   },
 
   rawUpdate(){
     liveService.rawUpdate(_sections);
+  },
+
+  setTemplates(templates) {
+    _templates = templates;
+    emitChange();
   },
 
   // register store with dispatcher, allowing actions to flow through

@@ -1,6 +1,7 @@
 <?php namespace App\Assets;
 
 use App\Assets\Traits\FormEngineScripts;
+use App\Loaders\PresetsLoader;
 
 class BuildModeScripts {
   use FormEngineScripts;
@@ -37,6 +38,9 @@ class BuildModeScripts {
 
   function localizeScriptData( $pageId ) {
     $onepager         = onepager();
+    $presetManager    = $onepager->presetManager();
+    $loader           = new PresetsLoader( $presetManager );
+    $loader->themePresetsLoader();
 
     $footer           = get_editor_section_list_footer();
     $ajaxUrl          = $onepager->api()->getAjaxUrl();
@@ -47,6 +51,7 @@ class BuildModeScripts {
     $posts            = $onepager->content()->getPosts();
     $blocks           = array_values( (array) $onepager->blockManager()->all() );
     $groupOrder       = $onepager->blockManager()->getGroupOrder();
+    $templates        = $onepager->presetManager()->all() ?: array();
 
     $sections = array_map( function ( $section ) {
       $section            = onepager()->render()->sectionBlockDataMerge( $section );
@@ -82,7 +87,8 @@ class BuildModeScripts {
       'groupOrder',
       'footer',
       'presets',
-      'basePreset'
+      'basePreset',
+      'templates'
     );
   }
 

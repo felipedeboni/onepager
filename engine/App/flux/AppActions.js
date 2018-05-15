@@ -70,5 +70,25 @@ module.exports = {
   previewFrameLoaded(){
     let type = actions.PREVIEW_FRAME_LOADED;
     dispatcher.handleViewAction({type});
+  },
+
+  addSection(section) {
+    let type = actions.ADD_SECTION;
+    dispatcher.handleViewAction({ type, section });
+  },
+
+  saveTemplate(name) {
+    let type = actions.ADD_TEMPLATE;
+    return dispatcher.handleViewAction({ type, name });
+  },
+
+  removeTemplate(id) {
+    let type = actions.REMOVE_TEMPLATE;
+    return dispatcher.handleViewAction({ type, id });
+  },
+
+  loadPresetById(id) {
+    let type = actions.LOAD_PRESET;
+    return dispatcher.handleViewAction({ type, id });
   }
 };

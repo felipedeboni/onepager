@@ -19,6 +19,9 @@ module.exports = {
     UPDATE_TITLE     : null,
     COLLAPSE_SIDEBAR : null,
     PREVIEW_FRAME_LOADED : null,
+    ADD_TEMPLATE     : null,
+    REMOVE_TEMPLATE  : null,
+    LOAD_PRESET      : null
   }),
 
   ActionSources: keyMirror({

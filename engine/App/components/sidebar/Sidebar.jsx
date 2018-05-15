@@ -11,6 +11,7 @@ const AppStore = require('../../AppStore.js');
 const SectionList = require('../section-list/SectionList.jsx');
 const SectionControls = require('./SectionControls.jsx');
 const Settings = require("./Settings.jsx");
+const TemplatesList = require("./../templates/TemplatesList.jsx");
 const Menu = require("./Menu.jsx");
 const $ = jQuery;
 const Footer = require('./../section-list/Footer.jsx');
@@ -134,6 +135,7 @@ let Sidebar = React.createClass({
              icon2="arrow-left" parent={true}/>
         <Tab onClick={handleTabClick} id='op-contents' icon='sliders' title='Contents' active={activeTab}/>
         <Tab onClick={handleTabClick} id='op-blocks' icon='cube' title='Blocks' active={activeTab}/>
+        <Tab onClick={handleTabClick} id='op-templates' icon='database fa-fw' title='Templates' active={activeTab} visibleOn="op-sections" />
         {/* <Tab onClick={handleTabClick} id='op-menu' icon='link' title='Menu' active={activeTab} visibleOn="op-sections"/> */}
         {/* <Tab onClick={handleTabClick} id='op-settings' icon='cog' title='Global Settings' active={activeTab} visibleOn="op-sections"/> */}
 
@@ -158,7 +160,7 @@ let Sidebar = React.createClass({
   },
 
   render() {
-    let {sections, blocks, activeSectionIndex, activeSection} = this.props;
+    let {sections, blocks, templates, activeSectionIndex, activeSection} = this.props;
     let sectionEditable = activeSectionIndex !== null;
     let activeTab = this.props.sidebarTabState.active;
     let sectionSettings = activeSection ? _.pick(activeSection, ['settings', 'contents', 'styles']) : {};
@@ -200,9 +202,9 @@ let Sidebar = React.createClass({
               <BlockCollection blocks={blocks}/>
             </TabPane>
 
-            <TabPane id='op-menu' active={activeTab}>
+            {/* <TabPane id='op-menu' active={activeTab}>
               <Menu sections={sections}/>
-            </TabPane>
+            </TabPane> */}
 
             <TabPane id='op-contents' active={activeTab}>
               {sectionEditable ?
@@ -216,9 +218,13 @@ let Sidebar = React.createClass({
               }
             </TabPane>
 
-            <TabPane id='op-settings' active={activeTab}>
-              <Settings whenSettingsDirty={this.whenSettingsDirty}/>
+            <TabPane id='op-templates' active={activeTab}>
+              <TemplatesList templates={templates} sectionsCount={sections.length}/>
             </TabPane>
+
+            {/* <TabPane id='op-settings' active={activeTab}>
+              <Settings whenSettingsDirty={this.whenSettingsDirty}/>
+            </TabPane> */}
           </div>
         </div>
 
