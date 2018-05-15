@@ -15,30 +15,30 @@ Onepager was designed from day one to create a great develop experience. We are 
 
 - [Summary](./fields/summary.md)
 - Text
-  - [Text](./text.md)
-  - [Textarea](./textarea.md)
-  - [Select](./select.md)
-  - [Editor](./editor.md)
-  - [Switch](./switch.md)
-  - [Link](./link.md)
+  - [Text](./fields/text.md)
+  - [Textarea](./fields/textarea.md)
+  - [Select](./fields/select.md)
+  - [Editor](./fields/editor.md)
+  - [Switch](./fields/switch.md)
+  - [Link](./fields/link.md)
 - Repeatable Fields
-  - [Repeater Group](./repeater-group.md)
-  - [Repeater Single](./repeater-single.md)
+  - [Repeater Group](./fields/repeater-group.md)
+  - [Repeater Single](./fields/repeater-single.md)
 - Media
-  - [Color Picker](./colorpicker.md)
-  - [Media](./media.md)
-  - [Image](./image.md)
-  - [Background Image](./bg_image.md)
-  - [Icon](./icon.md)
+  - [Color Picker](./fields/colorpicker.md)
+  - [Media](./fields/media.md)
+  - [Image](./fields/image.md)
+  - [Background Image](./fields/bg_image.md)
+  - [Icon](./fields/icon.md)
 - WordPress Specific
-  - [Category](./wp_category.md)
-  - [Menu](./wp_menu.md)
-  - [Page](./wp_page.md)
-  - [Post](./wp_post.md)
+  - [Category](./fields/wp_category.md)
+  - [Menu](./fields/wp_menu.md)
+  - [Page](./fields/wp_page.md)
+  - [Post](./fields/wp_post.md)
 - Special Fields
-  - [SmartLink](./smartlink.md)
+  - [SmartLink](./fields/smartlink.md)
 - Conditional Fields
-  - [Switch Conditional](./switch-conditional.md)
+  - [Switch Conditional](./fields/switch-conditional.md)
 
 ### Templates
 - [How to add a new onepager template](./templates/how-to-add-a-new-onepage-template.md)
