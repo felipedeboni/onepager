@@ -21,7 +21,7 @@ class BuildModeScripts {
       return;
     }
 
-    $this->resetWpScriptQueue();
+    // $this->resetWpScriptQueue();
 
     $this->enqueueFormEngineScripts();
     $this->enqueueInitializerScript();
@@ -54,8 +54,8 @@ class BuildModeScripts {
     $templates        = $onepager->presetManager()->all() ?: array();
 
     $sections = array_map( function ( $section ) {
-      $section            = onepager()->render()->sectionBlockDataMerge( $section );
-      $section['content'] = onepager()->render()->section( $section );
+      $section            = onepager()->render()->sectionBlockDataMerge( $section, true );
+      $section['content'] = onepager()->render()->section( $section, true );
       $section['style']   = onepager()->render()->style( $section );
 
       return $section;

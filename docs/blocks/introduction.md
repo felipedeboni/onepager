@@ -24,3 +24,7 @@ Settings section comes with something like global setting of the section, such a
 
 ### Style
 Style section are incorporated with all style handle, that your many require or may need to change for your own. With this section you can change any styling of the selected section.
+
+### Detecting wether you are on editor or not inside the view files.
+
+```$ONEPAGER_EDITOR``` is a boolean var that enable you to verify if your view file is running inside the editor or on the live website.

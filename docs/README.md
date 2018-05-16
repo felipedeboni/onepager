@@ -44,6 +44,9 @@ Onepager was designed from day one to create a great develop experience. We are 
 - [How to add a new onepager template](./templates/how-to-add-a-new-onepage-template.md)
 - [How to override default onepager template](./templates/how-to-override-default-onepager-template.md)
 
+### Helpers and Utility functions
+- [List of all helpers and utilities OnePager has to offer](./helpers/list.md)
+
 
 ### Extend/Override
 - [How to extend a block inside theme](./extend/how-to-extend-a-block-inside-theme.md)

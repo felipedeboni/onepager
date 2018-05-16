@@ -129,4 +129,8 @@ abstract class Onepager {
     return 'background-color: ' . $color . ';';
   }
 
+  public static function IsOnPreviewMode() {
+    return isset($_GET['onepager']) && $_GET['onepager'] == 0 && isset($_GET['onepager_preview']) && $_GET['onepager_preview'] == 1;
+  }
+
 }

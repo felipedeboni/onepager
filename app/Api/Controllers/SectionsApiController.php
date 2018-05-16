@@ -65,9 +65,9 @@ class SectionsApiController extends ApiController {
   protected function prepareSectionWithContentAndStyle( $section ) {
     $render = onepager()->render();
 
-    $section            = $render->sectionBlockDataMerge( $section );
-    $section['content'] = $render->section( $section );
-    $section['style']   = $render->style( $section );
+    $section                  = $render->sectionBlockDataMerge( $section, true );
+    $section['content']       = $render->section( $section, true );
+    $section['style']         = $render->style( $section );
 
     return $section;
   }

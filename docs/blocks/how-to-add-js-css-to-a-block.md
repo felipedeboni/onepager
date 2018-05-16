@@ -1,17 +1,17 @@
 Lets create a block named my-content
 
-	.
-	├── wp-content/themes/themename
-	|   ├── onepager
-	|   |   ├── blocks
-	|   |   |   ├── custom-block
-	|   |   |   |   ├── config.php
-	|   |   |   |   ├── view.php
-	|   |   |   |   ├── style.php
-	|   |   |   |   ├── block.css
-	|   |   |   |   ├── assets
-	|   |   |   |   |   ├── style.css
-	|   |   |   |   |   ├── script.js
+  .
+  ├── wp-content/themes/themename
+  |   ├── onepager
+  |   |   ├── blocks
+  |   |   |   ├── custom-block
+  |   |   |   |   ├── config.php
+  |   |   |   |   ├── view.php
+  |   |   |   |   ├── style.php
+  |   |   |   |   ├── block.css
+  |   |   |   |   ├── assets
+  |   |   |   |   |   ├── style.css
+  |   |   |   |   |   ├── script.js
 
 ## block.css
 
@@ -23,10 +23,10 @@ The `assets/style.css` and `assets/script.js` will not be loaded automatically s
 
 ```php
 return array(
-	...
-	'assets' => function( $blockRootUrl ){
+  ...
+  'assets' => function( $blockRootUrl ){
 
-	}
+  }
 );
 ```
 
@@ -42,27 +42,27 @@ and developer name is `John Doe` the asset name could be 'jd-custom-block-style'
 
 ```php
 return array(
-	...
-	'assets' => function( $blockRootUrl ){
-		Onepager::addStyle(
-			'my-custom-block-style',
-			$blockRootUrl.'/assets/style.css'
-		);
-	}
+  ...
+  'assets' => function( $blockRootUrl ){
+    Onepager::addStyle(
+      'my-custom-block-style',
+      $blockRootUrl.'/assets/style.css'
+    );
+  }
 );
 ```
 
 We can define style dependencies by using a 3rd parameter.
 ```php
 return array(
-	...
-	'assets' => function( $blockRootUrl ){
-		Onepager::addStyle(
-			'my-custom-block-style',
-			$blockRootUrl.'/assets/style.css',
-			array('tx-bootstrap')
-		);
-	}
+  ...
+  'assets' => function( $blockRootUrl ){
+    Onepager::addStyle(
+      'my-custom-block-style',
+      $blockRootUrl.'/assets/style.css',
+      array('tx-bootstrap')
+    );
+  }
 );
 ```
 
@@ -78,10 +78,10 @@ and developer name is `John Doe` the asset name could be 'jd-custom-block-style'
 return array(
 ...
 'assets' => function( $blockRootUrl ){
-	Onepager::addScript(
-		'my-custom-block-script',
-		$blockRootUrl.'/assets/script.js'
-	);
+  Onepager::addScript(
+    'my-custom-block-script',
+    $blockRootUrl.'/assets/script.js'
+  );
 }
 );
 ```
@@ -91,13 +91,13 @@ We can define script dependencies by using a 3rd parameter.
 
 ```php
 return array(
-	...
-	'assets' => function( $blockRootUrl ){
-		Onepager::addScript(
-	   		'my-custom-block-script',
-			$blockRootUrl.'/assets/script.js',
-			array('jquery', 'tx-bootstrap')
-		);
-	}
+  ...
+  'assets' => function( $blockRootUrl ){
+    Onepager::addScript(
+         'my-custom-block-script',
+      $blockRootUrl.'/assets/script.js',
+      array('jquery', 'tx-bootstrap')
+    );
+  }
 );
 ```

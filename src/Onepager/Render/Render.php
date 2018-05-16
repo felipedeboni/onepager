@@ -55,7 +55,7 @@ class Render {
     return $block;
   }
 
-  public function section( $section ) {
+  public function section( $section, $isPreview = false ) {
     /**
      * FIXME: Currently we are not smartly handling non existent blocks exceptions
      */
@@ -72,13 +72,13 @@ class Render {
     }
 
 
-    $section        = $this->sectionBlockDataMerge( $section );
+    $section        = $this->sectionBlockDataMerge( $section, $isPreview );
     $section['url'] = $block['url'];
 
     return do_shortcode($this->view->make( $view_file, $section ));
   }
 
-  public function sectionBlockDataMerge( $section ) {
+  public function sectionBlockDataMerge( $section, $isPreview = false ) {
     /** FIXME: Currently we are not smartly handling non existent blocks exceptions **/
 
     if ( ! $block = $this->isValidSection( $section ) ) {
@@ -92,6 +92,8 @@ class Render {
       }
       $section[ $tab ] = $this->sectionTransformer->mergePersistedDataAndConfigData( $block[ $tab ], $section[ $tab ] );
     }
+
+    $section['ONEPAGER_EDITOR'] = $isPreview;
 
     return $section;
   }
