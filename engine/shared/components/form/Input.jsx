@@ -150,6 +150,18 @@ let InputControl = React.createClass({
                     onChange={this.onChange}/>;
         break;
 
+      case "select_datastore":
+        controlHtml =
+          <WpSelect ref="input"
+            type='custom'
+            objectKey={control.key}
+            className={control.class}
+            label={control.label}
+            defaultValue={control.value}
+            onChange={this.onChange}
+          />;
+        break;
+
       case "select":
         controlHtml =
           <Select ref="input"

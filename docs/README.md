@@ -51,3 +51,4 @@ Onepager was designed from day one to create a great develop experience. We are 
 ### Extend/Override
 - [How to extend a block inside theme](./extend/how-to-extend-a-block-inside-theme.md)
 - [How to override block style inside theme](./extend/how-to-override-block-style-inside-theme.md)
+- [How To Add Third Party Data to OnePager](./extend/how-to-add-third-party-data.md)

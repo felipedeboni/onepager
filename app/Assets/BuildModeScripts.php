@@ -53,6 +53,10 @@ class BuildModeScripts {
     $groupOrder       = $onepager->blockManager()->getGroupOrder();
     $templates        = $onepager->presetManager()->all() ?: array();
 
+    // 3rd party
+    $third_party_data = array();
+    $third_party_data = apply_filters('onepager_third_party_data', $third_party_data);
+
     $sections = array_map( function ( $section ) {
       $section            = onepager()->render()->sectionBlockDataMerge( $section, true );
       $section['content'] = onepager()->render()->section( $section, true );
@@ -70,7 +74,7 @@ class BuildModeScripts {
     $presets    = \Onepager::getPresets();
     $basePreset = \Onepager::getBasePreset();
 
-    return compact(
+    $data = compact(
       'ajaxUrl',
       'disableBuildModeUrl',
       'optionPanel',
@@ -90,6 +94,12 @@ class BuildModeScripts {
       'basePreset',
       'templates'
     );
+
+    foreach( $third_party_data as $key => $value ) {
+      $data['third_' . $key] = $value;
+    }
+
+    return $data;
   }
 
   /**

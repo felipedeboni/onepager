@@ -27,6 +27,10 @@ let WpSelect = React.createClass({
       case "category":
         options = ODataStore.categories;
         break;
+
+      case "custom":
+        options = ODataStore['third_' + this.props.objectKey] || {};
+        break;
     }
 
     return (
